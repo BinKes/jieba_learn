@@ -23,30 +23,30 @@ jieba(结巴)中文分词：中文分词组件
 主要功能
 =======
 一. 分词
---------
-jieba中的方法
-* `jieba.cut`(str=?,cut_all=?,HMM=?)
-* `jieba.cut_for_search(str=?,cut_all=?,HMM=?)` 该方法适合用于搜索引擎构建倒排索引的分词，粒度比较细
-    jieba.cut_for_search和jieba.cut方法返回的是一个generator，可以用for循环迭代
-* `jieba.lcut_for_search`和`jieba.lcut`是将字符串切分后，返回一个列表
-* `jieba.Tokenizer(dictionary=DEFAULT_DICT)` 新建自定义分词器，可用于同时使用不同词典。`jieba.dt` 为默认分词器，所有全局分词相关函数都是该分词器的映射。
-'''
-例子：
-`import jieba`
-`cut_all` 参数用来控制是否采用全模式,默认是精确模式
-`seg_list = jieba.cut("欢迎来到厦门旅游",cut_all=True)`
-`print("切分后："+"/".join(seg_list))` 全模式，把所有可能成词的都分出来，可能某些字重复组成词
+-----------------
+      jieba中的方法
+      jieba.cut(str=?,cut_all=?,HMM=?)
+      jieba.cut_for_search(str=?,cut_all=?,HMM=?)该方法适合用于搜索引擎构建倒排索引的分词，粒度比较细
+      jieba.cut_for_search和jieba.cut方法返回的是一个generator，可以用for循环迭代
+      jieba.lcut_for_search和jieba.lcut是将字符串切分后，返回一个列表
+      jieba.Tokenizer(dictionary=DEFAULT_DICT)新建自定义分词器，可用于同时使用不同词典。jieba.dt为默认分词器，所有全局分词相关函数都是该分词的映       射。
 
-`seg_list = jieba.cut("欢迎来到厦门旅游", cut_all=False)`
-`print("切分后: " + "/ ".join(seg_list))`  精确模式，把所有可能成词的都分出来，字不会重复组成词
+代码示例
+-----------------
+      import jieba
+      #cut_all参数用来控制是否采用全模式,默认是精确模式
+      seg_list = jieba.cut("欢迎来到厦门旅游",cut_all=True)
+      print("切分后："+"/".join(seg_list))# 全模式，把所有可能成词的都分出来，可能某些字重复组成词
 
-`seg_list = jieba.cut("他来到了网易杭研大厦")` 默认是精确模式
-`print("切分后: " + "/ ".join(seg_list))` 新词识别，杭研不在词典中也能自动识别
+      seg_list = jieba.cut("欢迎来到厦门旅游", cut_all=False)
+      print("切分后: " + "/ ".join(seg_list))#精确模式，把所有可能成词的都分出来，字不会重复组成词
 
-#搜索引擎模式，在'精确模式'的基础上，对长词再次切分，提高召回率，适合用于搜索引擎分词
-`seg_list = jieba.cut_for_search("小明硕士毕业于中国科学院计算所，后在日本京都大学深造")` 搜索引擎模式
-`print(", ".join(seg_list))`
+      seg_list = jieba.cut("他来到了网易杭研大厦") #默认是精确模式
+      print("切分后: " + "/ ".join(seg_list))新词识别，杭研不在词典中也能自动识别
 
+      #搜索引擎模式，在'精确模式'的基础上，对长词再次切分，提高召回率，适合用于搜索引擎分词
+      seg_list = jieba.cut_for_search("小明硕士毕业于中国科学院计算所，后在日本京都大学深造")搜索引擎模式
+      print(", ".join(seg_list))
 
 二. 添加自定义词典
 ----------------
@@ -221,3 +221,7 @@ jieba中的方法
 
     # ChineseAnalyzer for Whoosh 搜索引擎
 
+六.HMM模型(隐马尔可夫模型)
+=================
+   
+   
